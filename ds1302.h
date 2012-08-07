@@ -1,4 +1,3 @@
-// <editor-fold defaultstate="collapsed" desc="Header DocBlock">
 /**
  * ds1302.h
  *
@@ -10,7 +9,6 @@
  * @copyright   Copyright (c) xles 2011
  * @link        http://web.mirakulix.org/
  */
-// </editor-fold>
 
 /** 
  * DS1302 register definitions (See datasheet for further info)

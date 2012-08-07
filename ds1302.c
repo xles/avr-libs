@@ -1,4 +1,3 @@
-// <editor-fold defaultstate="collapsed" desc="Header DocBlock">
 /**
  * ds1302.c
  *
@@ -10,8 +9,6 @@
  * @copyright   Copyright (c) xles 2011
  * @link        http://web.mirakulix.org/
  */
-// </editor-fold>
-
 #include "ds1302.h"
 
 
@@ -34,30 +31,30 @@ char rtc_cmd(char addr, char data[])
 	int i, c;
 	RTC_ENABLE;
 	RTC_WRITE;
-	for(i=0;i<8;i++) {
-		if(((addr >> i) & 0x01) == 1)
+	for (i = 0; i < 8; i++) {
+		if (((addr >> i) & 0x01) == 1)
 			RTC_PORT|= RTC_IO;
 		else
 			RTC_PORT&=~RTC_IO;
 		
 		RTC_SCLK;
 	}
-	if((addr & 0x01) == 1) {
+	if ((addr & 0x01) == 1) {
 		RTC_READ;
-		for(i=0;i<data;i++) {
+		for (i = 0; i < data; i++) {
 			tmp |= RTC_PIN & RTC_IO;
 			RTC_SCLK;
-			tmp>>=1;
-			if(data%8 == 0) {
+			tmp >>= 1;
+			if (data%8 == 0) {
 				r[] = tmp;
 				tmp=0;
 			}
 		}
 	} else {
 		RTC_WRITE;
-		for(c=0;c<strlen(data);c++) {
-			for(i=0;i<8;i++) {
-				if(((data[c] >> i) & 0x01) == 1)
+		for (c = 0; c < strlen(data); c++) {
+			for (i = 0; i < 8; i++) {
+				if (((data[c] >> i) & 0x01) == 1)
 					RTC_PORT|= RTC_IO;
 				else
 					RTC_PORT&=~RTC_IO;
@@ -96,7 +93,7 @@ rtc_date get_time()
 	
 	data = rtc_cmd(0xBF,64);
 	
-	for(i=0;i<strlen(data);i++) {
+	for (i = 0; i < strlen(data); i++) {
 		
 	}
 	
@@ -106,7 +103,7 @@ rtc_date get_time()
 char get_ampm(bool ampm)
 {
 	char data[];
-	if(ampm == true) {
+	if (ampm == true) {
 		data = "PM";
 	} else {
 		data = "AM";
@@ -118,7 +115,7 @@ char get_weekday(int day, bool abbr = true)
 {
 	char data[];
 	
-	switch(day) {
+	switch (day) {
 		case 1:
 			data = "Monday";
 			break;
@@ -141,7 +138,7 @@ char get_weekday(int day, bool abbr = true)
 			data = "Sunday";
 			break;
 	}
-	if(abbr == true) {
+	if (abbr == true) {
 		strncpy(data,data,3);
 	}
 	
@@ -152,7 +149,7 @@ char get_month(int month, bool abbr = true)
 {
 	char data[];
 	
-	switch(month) {
+	switch (month) {
 		case 1:
 			data = "January";
 			break;
@@ -190,7 +187,7 @@ char get_month(int month, bool abbr = true)
 			data = "December";
 			break;
 	}
-	if(abbr == true) {
+	if (abbr == true) {
 		strncpy(data,data,3);
 	}
 	

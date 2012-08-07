@@ -1,0 +1,6 @@
+Miscellaneous libraries for Atmel AVR 8-bit microcontrollers.
+
+ds1302 - not completed
+hd44780 - done
+magstripe - not completed
+matrix-keyboard - not completed

@@ -1,0 +1,4 @@
+HD44780 library for Atmel AVR 8-bit microcontrollers.
+
+Old code is old, but should compile and run just fine.
+Make sure to edit relevant information in hd44780.h before you test it.
